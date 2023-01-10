@@ -196,4 +196,3 @@ WELCOME!
    b) [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
 2. If you're still running into errors, make sure you have reloaded your terminal.
 3. If you're STILL running into errors, try [here](https://rustwasm.github.io/wasm-pack/book/quickstart.html)
-4.
