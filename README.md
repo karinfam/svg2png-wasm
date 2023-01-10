@@ -1,5 +1,7 @@
 # <img src="./logo.svg" width="150px">
 
+This is a fork of the original svg2png-wasm without optional syntax so it's webpack 4.x compatible.
+
 svg2png-wasm
 
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/ssssota/svg2png-wasm/Checks/main)](https://github.com/ssssota/svg2png-wasm/actions/workflows/checks.yml)
@@ -188,3 +190,9 @@ The source code for resvg can be found [here](https://github.com/RazrFalcon/resv
 ## 🙋‍♂️ Contributing
 
 WELCOME!
+
+1. Before running pnpm install/build, make sure you have rust and wasm-pack installed.
+   a) [Rust](https://rustup.rs/)
+   b) [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
+2. If you're still running into errors, make sure you have reloaded your terminal.
+3. If you're STILL running into errors, try [here](https://rustwasm.github.io/wasm-pack/book/quickstart.html)

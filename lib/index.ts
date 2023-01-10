@@ -33,39 +33,92 @@ export const createSvg2png = (opts?: ConverterOptions): Svg2png => {
       'WASM has not been initialized. Call `initialize` function.',
     );
   let converter: Converter | undefined;
+
+  let serifFamily = undefined;
+  let sansSerifFamily = undefined;
+  let cursiveFamily = undefined;
+  let fantasyFamily = undefined;
+  let monospaceFamily = undefined;
+
+  if (opts && opts.defaultFontFamily) {
+    if (opts.defaultFontFamily.serifFamily) {
+      serifFamily = opts.defaultFontFamily.serifFamily;
+    }
+
+    if (opts.defaultFontFamily.sansSerifFamily) {
+      sansSerifFamily = opts.defaultFontFamily.sansSerifFamily;
+    }
+
+    if (opts.defaultFontFamily.cursiveFamily) {
+      cursiveFamily = opts.defaultFontFamily.cursiveFamily;
+    }
+
+    if (opts.defaultFontFamily.fantasyFamily) {
+      fantasyFamily = opts.defaultFontFamily.fantasyFamily;
+    }
+
+    if (opts.defaultFontFamily.monospaceFamily) {
+      monospaceFamily = opts.defaultFontFamily.monospaceFamily;
+    }
+  }
+
   converter = createConverter(
-    opts?.defaultFontFamily?.serifFamily,
-    opts?.defaultFontFamily?.sansSerifFamily,
-    opts?.defaultFontFamily?.cursiveFamily,
-    opts?.defaultFontFamily?.fantasyFamily,
-    opts?.defaultFontFamily?.monospaceFamily,
+    serifFamily,
+    sansSerifFamily,
+    cursiveFamily,
+    fantasyFamily,
+    monospaceFamily,
   );
-  for (const font of opts?.fonts ?? []) {
-    converter.registerFont(font);
+
+  if (opts && opts.fonts) {
+    for (const font of opts.fonts) {
+      converter.registerFont(font);
+    }
   }
 
   const svg2png = (svg: string, options?: ConvertOptions) =>
     new Promise<Uint8Array>((resolve, reject) => {
       try {
-        const result = converter?.convert(
-          svg,
-          options?.scale,
-          options?.width,
-          options?.height,
-          options?.backgroundColor,
-        );
-        if (result) resolve(result);
-        else throw new Error('Converter already disposed.');
+        let scale = undefined;
+        let width = undefined;
+        let height = undefined;
+        let backgroundColor = undefined;
+
+        if (options) {
+          scale = options.scale;
+          width = options.width;
+          height = options.height;
+          backgroundColor = options.backgroundColor;
+        }
+
+        if (converter) {
+          const result = converter.convert(
+            svg,
+            scale,
+            width,
+            height,
+            backgroundColor,
+          );
+          if (result) resolve(result);
+        } else throw new Error('Converter already disposed.');
       } catch (e) {
         if (e instanceof Error) reject(e);
         else reject(new Error(`${e}`));
       }
     });
   svg2png.dispose = () => {
-    converter?.free();
-    converter = undefined;
+    if (converter) {
+      converter.free();
+      converter = undefined;
+    }
   };
-  svg2png.getLoadedFontFamilies = () => converter?.list_fonts() ?? [];
+  svg2png.getLoadedFontFamilies = () => {
+    if (converter) {
+      return converter.list_fonts();
+    } else {
+      return [];
+    }
+  };
 
   return svg2png;
 };
