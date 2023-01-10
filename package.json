@@ -6,6 +6,9 @@
   "module": "dist/index.mjs",
   "unpkg": "dist/index.min.js",
   "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
