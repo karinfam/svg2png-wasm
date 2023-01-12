@@ -1,0 +1,18 @@
+{
+  "name": "svg2png-wasm",
+  "description": "resvg wrapper for svg2png wasm module",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssssota/svg2png-wasm"
+  },
+  "files": [
+    "svg2png_wasm_bg.wasm",
+    "svg2png_wasm.js",
+    "svg2png_wasm.d.ts"
+  ],
+  "module": "svg2png_wasm.js",
+  "types": "svg2png_wasm.d.ts",
+  "sideEffects": false
+}
