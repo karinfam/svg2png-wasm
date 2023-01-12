@@ -28,7 +28,6 @@
     "bundle:js": "node bundle",
     "bundle:dts": "dts-bundle-generator --no-banner --external-types -o dist/index.d.ts lib/index.ts",
     "clean": "run-p clean:*",
-    "clean:wasm": "rimraf dist-wasm svg2png_wasm_bg.wasm",
     "clean:bundle": "rimraf dist",
     "copy-wasm": "copyfiles -f dist-wasm/svg2png_wasm_bg.wasm .",
     "format": "run-p format:*",
@@ -90,7 +89,7 @@
     "tslib": "^2.3.1",
     "typescript": "^4.5.4",
     "vitest": "^0.9.4",
-    "wasm-pack": "0.10.2"
+    "wasm-pack": "^0.10.2"
   },
   "type": "module"
 }
