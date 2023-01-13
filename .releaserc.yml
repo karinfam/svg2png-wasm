@@ -13,5 +13,5 @@ plugins:
   - '@semantic-release/npm'
   - - '@semantic-release/github'
     - assets:
-        - path: svg2png_waasm_bg.wasm
+        - path: svg2png_wasm_bg.wasm
           label: WebAssembly distribution

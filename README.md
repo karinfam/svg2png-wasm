@@ -1,5 +1,7 @@
 # <img src="./logo.svg" width="150px">
 
+DON'T USE THIS IF YOU DONT HAVE TO! ALWAYS REVERT TO THE MAIN STABLE VERSION BY SSSSOTA.
+
 This is a fork of the original svg2png-wasm without optional syntax so it's webpack 4.x compatible.
 
 svg2png-wasm
@@ -196,3 +198,10 @@ WELCOME!
    b) [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
 2. If you're still running into errors, make sure you have reloaded your terminal.
 3. If you're STILL running into errors, try [here](https://rustwasm.github.io/wasm-pack/book/quickstart.html)
+
+Common errors:
+
+- If you're getting "file not found error 2 (os 2)" during pnpm build:wasm, it's because you don't have Rust on your machine. Install using rustup.
+- If you're getting "wasm-pack is not installed" even though it's there in your node_modules, it's either because
+  - You're using a version where this is a known issue with wasm-pack (0.10.1, 0.10.3).
+  - or you're installing from pnpm cache. I don't know why this happens, but clearing my local pnpm store fixes this. The issue happens in CI/CD environments as well, so to trigger releases you'll see me force a lock file update.
